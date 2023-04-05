@@ -1,5 +1,7 @@
 import numpy as np
 
+#explanation of game
+
 player_1 = np.array([0, 1, 2, 3, 4]) #i
 player_2 = np.array([0, 1, 2, 3, 4]) #j
 
