@@ -1,0 +1,26 @@
+import numpy as np
+player_1 = np.array([1, 2, 3, 4]) #i
+player_2 = np.array([1, 2, 3, 4]) #j
+
+i = 1
+j = 1
+
+payoff = [[0,0,0,0],
+          [0,0,0,0],
+          [0,0,0,0],
+          [0,0,0,0]]
+
+for i in range(1,5): 
+  for j in range(1,5):
+    if i==0: 
+      p1_reward = 4
+      p2_reward
+
+    
+    p1_reward = (8*(i/(i+j))+4-i)
+    p2_reward = (8*(j/(i+j))+4-j)
+    payoff[i-1][j-1] = p1_reward
+    print(i, j, sep=" ")
+    # payoff([i][j]) == p1_reward
+
+print(payoff)
