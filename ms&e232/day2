@@ -1,0 +1,12 @@
+questions for prof
+1. i've already taken prof ugander's networks course. will this course repeat a lot of that same content? 
+2. dealing with irrational agents, 1 modeling method is to redefine different goals in payoff equations. 2nd modeling method is to use a "choosing" method that takes some distribution around the rational decision/method. 
+
+
+to explore: 
+1. prospect theory? related to behavioral economics in some way.
+expected utility theory... clarify "expected", read more by emailing prof
+
+overview: began using set notation to describe players (1,2,...,n), strategy space s indexed by players, and utility function indexed by i inputting the chosen strategies vector. more generally described players, game rules, information, outcomes, and payoffs within game theory. examples of selling bandwith liscenses (last three digits allowed for collusion, story by paul milgrom) and traffic congestion. 
+
+unfortunately no games to model today. 
