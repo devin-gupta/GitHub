@@ -1,6 +1,12 @@
-import numpy as np
+# day 1, ms&e 232, prof ramesh johari
 
-#explanation of game
+# modeling the following 2 player game. 
+# player 1 and player 2 each begin with $4. bank begins with $8. 
+# each player can "bet" integer values and win the money they didn't bet + a percentage of the bank's money. 
+# the bank's money is divied up based on the proportion of player 1's bet and player 2's bet. if one player bets $0, the other player gets 100% of the bank's money. If both bet $0, no one gets the bank's money.
+# example: player 1 bets 2, player 2 bets 2. each player wins 50% of the bank's $8, and keep 4-2=2 dollars from their original pile. Hence each player's reward is $2+0.5*$8=$6. 
+
+import numpy as np
 
 player_1 = np.array([0, 1, 2, 3, 4]) #i
 player_2 = np.array([0, 1, 2, 3, 4]) #j
