@@ -1,8 +1,20 @@
-dominated strategies
-
+Dominant Strategies
 - strategy a is weakly dominant if
-s = [s1, s2, ...] basically the vector of s that represents the chosen strategies of every player
-s -i = behavior of all other players than i. 
-strict dominance --> b is always better than a, no matter what other players do. 
+- s = [s1, s2, ...] basically the vector of s that represents the chosen strategies of every player
+- s -i = behavior of all other players than i. 
+- strict dominance --> b is always better than a, no matter what other players do. 
+
+Dominant Strategy
+- strategy b is weakly dominant if it weakly dominates every other strategy a in the strategy space. 
+- strategy b is strictly dominant if it strictly dominates every other strategy a in the strategy space. 
+- in prisoner's dilemma, strategy b is a strict dominant strategy.
+
+Second Price Auction Theory (Vickery Auction)
+- N bidders, each bidder i has value vi for item.
+- if your bid wins, payoff is vi - S(i-1). if you lose, payoff is 0. 
+- went through modeling and proving "strategy dominant to bid value". didn't consider tie breaking scenarios. 
 
 
+
+Questions: 
+- what is time complexity of evaluating player a choosing any real, and player b choosing any real?
