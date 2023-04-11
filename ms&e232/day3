@@ -14,7 +14,7 @@ Second Price Auction Theory (Vickery Auction)
 - if your bid wins, payoff is vi - S(i-1). if you lose, payoff is 0. 
 - went through modeling and proving "strategy dominant to bid value". didn't consider tie breaking scenarios. 
 
-
+terms: auction theory, market design, mechnanism design, inverse game theory
 
 Questions: 
 - what is time complexity of evaluating player a choosing any real, and player b choosing any real?
