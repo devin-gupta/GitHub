@@ -1,0 +1,8 @@
+dominated strategies
+
+- strategy a is weakly dominant if
+s = [s1, s2, ...] basically the vector of s that represents the chosen strategies of every player
+s -i = behavior of all other players than i. 
+strict dominance --> b is always better than a, no matter what other players do. 
+
+
