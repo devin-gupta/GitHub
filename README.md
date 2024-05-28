@@ -6,10 +6,6 @@ This repository contains my class notes from my time at Stanford University. The
 
 The repository is organized by class. Each class has its own folder, and within each folder, you'll find the relevant notes and resources. To get started, simply navigate to the class folder you're interested in and open the notes in your preferred markdown viewer.
 
-## 📝 Note Taking
-
-These notes are best viewed in a markdown viewer that supports visual formatting. This will allow you to see images, tables, and other visual aids that are included in the notes.
-
 ## 📚 Classes
 
 Here's a list of the classes included in this repository:
