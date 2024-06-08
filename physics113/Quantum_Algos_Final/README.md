@@ -32,6 +32,8 @@ Grover's algorithm is designed for unstructured search problems, providing a qua
 
 #### Key Notes:
 
+* **Grover’s Implementation**: Code was built on various basic implementations of Grover’s algorithm using Qiskit, primarily using Qiskit’s GroverOperator library to perform iterations of Grover’s algorithm. Various add-ons are included to test code on Qiskit’s QASM simulator, fake backends, as well as on real IBM quantum hardware.
+
 ## Citations/References
 
 1. **Shor's Algorithm**:
@@ -42,6 +44,12 @@ Grover's algorithm is designed for unstructured search problems, providing a qua
    - *Shor’s Algorithm (for Dummies)* by *Kaustubh Rakhade*: [https://kaustubhrakhade.medium.com/shors-factoring-algorithm-94a0796a13b1](https://kaustubhrakhade.medium.com/shors-factoring-algorithm-94a0796a13b1).
    - *Sympy Classical Factorization* in *Number Theory Library*: [https://github.com/sympy/sympy/blob/79d7b3ef4b5e2796da6458effa7fb3427a73f2c9/sympy/ntheory/factor_.py#L1052](https://github.com/sympy/sympy/blob/79d7b3ef4b5e2796da6458effa7fb3427a73f2c9/sympy/ntheory/factor_.py#L1052).
 2. **Grover's Algorithm**:
+
+- *Concepts of Grover's Algorithm* by *Microsoft Azure Quantum*: [https://learn.microsoft.com/en-us/azure/quantum/concepts-grovers](https://learn.microsoft.com/en-us/azure/quantum/concepts-grovers).
+- *Fundamentals of Quantum Algorithms: Grover's Algorithm* by *IBM Quantum*: [https://learning.quantum.ibm.com/course/fundamentals-of-quantum-algorithms/grovers-algorithm](https://learning.quantum.ibm.com/course/fundamentals-of-quantum-algorithms/grovers-algorithm).
+- *Grover's Algorithm Implementation* in *Qiskit Textbook*: [https://github.com/Qiskit/textbook/blob/main/notebooks/ch-algorithms/grover.ipynb](https://github.com/Qiskit/textbook/blob/main/notebooks/ch-algorithms/grover.ipynb).
+- *Image Processing with FRQI and NEQR* in *Qiskit Textbook*: [https://github.com/Qiskit/textbook/blob/main/notebooks/ch-applications/image-processing-frqi-neqr.ipynb](https://github.com/Qiskit/textbook/blob/main/notebooks/ch-applications/image-processing-frqi-neqr.ipynb).
+- *Grover’s Algorithm: Quantum Database Search* by *IEEE*: [https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=8622457](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8622457).
 
 ---
 
