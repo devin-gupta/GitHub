@@ -97,42 +97,42 @@ def grovers(marked_states, backend):
     return counts
 
 # Test grovers function
-#grovers(['10101'], backend)
+grovers(['10101'], backend)
 
 ### CODE UTILIZED TO BENCHMARK FAKE BACKENDS ###
 
 # Before running, must edit grovers() function to also take in appropriate backend 
 
-# def test_grover_on_all_backends():
-#     predefined_states = ["10", "01", "00"]  # Defining various marked states. Can adjust to appropriate number of qubits
-#     results = {}
+def test_grover_on_all_backends():
+    predefined_states = ["10", "01", "00"]  # Defining various marked states. Can adjust to appropriate number of qubits
+    results = {}
 
-#     for backend_name, backend in backends.items():
+    for backend_name, backend in backends.items():
         
-#         # Store backend results
-#         backend_results = []
+        # Store backend results
+        backend_results = []
         
-#         # iterate through predefined states
-#         for state in predefined_states:
-#             # get counts dictionary
-#             counts = grovers([state], backend)
-#             # sum total number of shots
-#             total_counts = sum(counts.values())
-#             # get the number of counts for the predefined state from dictionary
-#             correct_counts = counts.get(state, 0)
-#             # calculate proportion and append
-#             proportion = correct_counts / total_counts
-#             backend_results.append(proportion)
+        # iterate through predefined states
+        for state in predefined_states:
+            # get counts dictionary
+            counts = grovers([state], backend)
+            # sum total number of shots
+            total_counts = sum(counts.values())
+            # get the number of counts for the predefined state from dictionary
+            correct_counts = counts.get(state, 0)
+            # calculate proportion and append
+            proportion = correct_counts / total_counts
+            backend_results.append(proportion)
             
-#         average_proportion = sum(backend_results) / len(backend_results) # calculate proportion of correct results across all tested states
-#         results[backend_name] = average_proportion
+        average_proportion = sum(backend_results) / len(backend_results) # calculate proportion of correct results across all tested states
+        results[backend_name] = average_proportion
         
-#         print(f"Backend: {backend_name}, Average Proportion: {str(average_proportion)}")
+        print(f"Backend: {backend_name}, Average Proportion: {str(average_proportion)}")
 
-#     return results
+    return results
 
-# results = test_grover_on_all_backends()
-# print(results)
+results = test_grover_on_all_backends()
+print(results)
 
 ### TIMING CLASSICAL AND QUANTUM BENCHMARKING ###
 
