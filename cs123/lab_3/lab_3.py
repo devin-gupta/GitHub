@@ -46,7 +46,7 @@ class InverseKinematics(Node):
         self.t = 0
 
     def listener_callback(self, msg):
-        joints_of_interest = ['leg_front_l_1', 'leg_front_l_2', 'leg_front_l_3']
+        joints_of_interest = ['leg_front_r_1', 'leg_front_r_2', 'leg_front_r_3']
         self.joint_positions = np.array([msg.position[msg.name.index(joint)] for joint in joints_of_interest])
         self.joint_velocities = np.array([msg.velocity[msg.name.index(joint)] for joint in joints_of_interest])
 
