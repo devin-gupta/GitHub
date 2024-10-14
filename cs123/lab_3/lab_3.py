@@ -116,6 +116,8 @@ class InverseKinematics(Node):
 
             target_current_difference = self.forward_kinematics(theta[0], theta[1], theta[2]) - target_ee
 
+            print(f"Difference: {target_current_difference}, Target: {target_ee}, Current: {self.forward_kinematics(theta[0], theta[1], theta[2])}")
+
             cost = np.sum(target_current_difference ** 2)
             errorNorm = np.sum(np.abs(target_current_difference))
 
@@ -124,27 +126,10 @@ class InverseKinematics(Node):
         def gradient(theta, epsilon=1e-3):
             # Compute the gradient of the cost function using finite differences
 
-            theta_plus = theta + epsilon
-            theta_minus = theta - epsilon
-
             cost_plus = cost_function(theta + epsilon)[0]
             cost_minus = cost_function(theta - epsilon)[0]
 
             grad = (cost_plus - cost_minus) / (2 * epsilon)
-
-            # grad = np.zeros_like(theta)
-            # for i in range(len(theta)):
-            #     theta_plus = np.copy(theta) + epsilon
-            #     theta_minus = np.copy(theta) - epsilon
-
-            #     cost_plus_ep = cost_function(theta_plus)[0]
-            #     cost_minus_ep = cost_function(theta_minus)[0]
-
-            #     grad[i] = (cost_plus_ep - cost_minus_ep) / (2 * epsilon)
-
-            # cost_plus_ep = cost_function(theta + epsilon)
-            # cost_minus_ep = cost_function(theta - epsilon)
-            # grad = ((cost_plus_ep[0] - cost_minus_ep[0])/ (2 * epsilon), (cost_plus_ep[1]-cost_minus_ep[1])/ (2 * epsilon)) 
             
             return grad
 
@@ -161,8 +146,6 @@ class InverseKinematics(Node):
             ################################################################################################
             # TODO: Implement the gradient update
             # TODO (BONUS): Implement the (quasi-)Newton's method for faster convergence
-            # theta[0] -= learning_rate * grad[0]
-            # theta[2] -=learning_rate *grad[1]
 
             theta -= learning_rate * grad
             ################################################################################################
