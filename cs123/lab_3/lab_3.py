@@ -51,6 +51,7 @@ class InverseKinematics(Node):
         self.joint_velocities = np.array([msg.velocity[msg.name.index(joint)] for joint in joints_of_interest])
 
     def forward_kinematics(self, theta1, theta2, theta3):
+
         def rotation_x(angle):
             # rotation about the x-axis implemented for you
             return np.array([
@@ -88,11 +89,13 @@ class InverseKinematics(Node):
             ])
 
         # T_0_1 (base_link to leg_front_r_1)
-        T_0_1 = translation(-0.07500, -0.0445, 0) @ rotation_x(1.57080) @ rotation_z(theta1)
+        # T_0_1 = translation(0.07500, -0.0445, 0) @ rotation_x(1.57080) @ rotation_z(theta1)
+        T_0_1 = translation(0.07500, -0.08350, 0) @ rotation_x(1.57080) @ rotation_z(theta1)
 
         # T_1_2 (leg_front_r_1 to leg_front_r_2)
         ## TODO: Implement the transformation matrix from leg_front_r_1 to leg_front_r_2
-        T_1_2 = translation(0, 0, 0.039) @ rotation_y(-1.57080) @ rotation_z(theta2)
+        # T_1_2 = translation(0, 0, 0.039) @ rotation_y(-1.57080) @ rotation_z(theta2)
+        T_1_2 = rotation_y(-1.57080) @ rotation_z(theta2)
 
         # T_2_3 (leg_front_r_2 to leg_front_r_3)
         ## TODO: Implement the transformation matrix from leg_front_r_2 to leg_front_r_3
@@ -116,8 +119,6 @@ class InverseKinematics(Node):
 
             target_current_difference = self.forward_kinematics(theta[0], theta[1], theta[2]) - target_ee
 
-            print(f"Difference: {target_current_difference}, Target: {target_ee}, Current: {self.forward_kinematics(theta[0], theta[1], theta[2])}")
-
             cost = np.sum(target_current_difference ** 2)
             errorNorm = np.sum(np.abs(target_current_difference))
 
@@ -126,17 +127,32 @@ class InverseKinematics(Node):
         def gradient(theta, epsilon=1e-3):
             # Compute the gradient of the cost function using finite differences
 
-            cost_plus = cost_function(theta + epsilon)[0]
-            cost_minus = cost_function(theta - epsilon)[0]
+            # cost_plus = cost_function(theta + epsilon)[0]
+            # cost_minus = cost_function(theta - epsilon)[0]
 
-            grad = (cost_plus - cost_minus) / (2 * epsilon)
-            
+            # grad = (cost_plus - cost_minus) / (2 * epsilon)
+
+            grad = np.zeros_like(theta)
+
+            for i in range(len(theta)):
+                
+                theta_plus = theta.copy()
+                theta_plus[i] += epsilon
+
+                theta_minus = theta.copy()
+                theta_minus[i] -= epsilon
+
+                cost_plus = cost_function(theta_plus)[0]
+                cost_minus = cost_function(theta_minus)[0]
+
+                grad[i] = (cost_plus - cost_minus) / (2 * epsilon)
+
             return grad
 
         theta = np.array(initial_guess)
         learning_rate = 10 # TODO: Set the learning rate
-        max_iterations = 1000 # TODO: Set the maximum number of iterations
-        tolerance = 0.01 # TODO: Set the tolerance for the L1 norm of the error
+        max_iterations = 50 # TODO: Set the maximum number of iterations
+        tolerance = 0.001 # TODO: Set the tolerance for the L1 norm of the `error`
 
         cost_l = []
         for _ in range(max_iterations):
@@ -165,12 +181,30 @@ class InverseKinematics(Node):
         ################################################################################################
         t_norm = t % 3.0
 
-        vertex_1, vertex_2, vertex_3 = self.ee_triangle_positions
-        interp_times = np.array([0, 1, 2])
-
-        x_interp = np.interp(t_norm, interp_times, self.ee_triangle_positions[:, 0])
-        y_interp = np.interp(t_norm, interp_times, self.ee_triangle_positions[:, 1])
-        z_interp = np.interp(t_norm, interp_times, self.ee_triangle_positions[:, 2])
+        if 0 <= t_norm < 1:
+            # print("touchdown to liftoff")
+            x_interp = np.interp(t_norm, [0, 1], 
+                [self.ee_triangle_positions[0][0], self.ee_triangle_positions[1][0]])
+            y_interp = np.interp(t_norm, [0, 1], 
+                [self.ee_triangle_positions[0][1], self.ee_triangle_positions[1][1]])
+            z_interp = np.interp(t_norm, [0, 1], 
+                [self.ee_triangle_positions[0][2], self.ee_triangle_positions[1][2]])
+        elif 1 <= t_norm < 2:
+            # print("liftoff to mid-swing")
+            x_interp = np.interp(t_norm, [1, 2], 
+                [self.ee_triangle_positions[1][0], self.ee_triangle_positions[2][0]])
+            y_interp = np.interp(t_norm, [1, 2], 
+                [self.ee_triangle_positions[1][1], self.ee_triangle_positions[2][1]])
+            z_interp = np.interp(t_norm, [1, 2], 
+                [self.ee_triangle_positions[1][2], self.ee_triangle_positions[2][2]])
+        elif 2<= t_norm < 3:
+            # print("mid-swing to touchdown")
+            x_interp = np.interp(t_norm, [2, 3], 
+                [self.ee_triangle_positions[2][0], self.ee_triangle_positions[0][0]])
+            y_interp = np.interp(t_norm, [2, 3], 
+                [self.ee_triangle_positions[2][1], self.ee_triangle_positions[0][1]])
+            z_interp = np.interp(t_norm, [2, 3], 
+                [self.ee_triangle_positions[2][2], self.ee_triangle_positions[0][2]])
 
         target_interp = np.array([x_interp, y_interp, z_interp])
 
