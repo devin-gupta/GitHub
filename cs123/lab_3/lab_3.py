@@ -171,7 +171,7 @@ class InverseKinematics(Node):
             if l1.mean() < tolerance:
                 break
 
-        print(f' \n COST: {cost} \n ')
+        # print(f' \n COST: {cost} \n ')
 
         return theta
 
